@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   yesBtn.addEventListener("click", () => {
       stopHeartEffect();
-      document.querySelector(".question").innerHTML = "I love you too! 😘";
+      document.querySelector(".question").innerHTML = "I love you too!😘";
+      document.querySelector(".question").innerHTML = "Let’s make plans for our future together!😘";
       document.querySelector(".gif").src = "abc.jpg";
       yesBtn.style.display = "none";
       noBtn.style.display = "none";
