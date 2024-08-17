@@ -1,56 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const heartContainer = document.querySelector(".heart-container");
-  const yesBtn = document.querySelector(".yes-btn");
-  const noBtn = document.querySelector(".no-btn");
-  let heartInterval;
+    const yesBtn = document.querySelector(".yes-btn");
+    const noBtn = document.querySelector(".no-btn");
+    const gifImg = document.querySelector(".gif");
 
-  function createHearts() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.animationDelay = `${Math.random() * 2}s`;
-      heartContainer.appendChild(heart);
+    yesBtn.addEventListener("click", () => {
+        document.querySelector(".question").innerHTML = "Let’s make plans for our future together!😘";
+        gifImg.src = "abc.jpg";
 
-      // Xóa trái tim sau khi hoàn thành animation
-      setTimeout(() => {
-          heart.remove();
-      }, 3000);
-  }
+        // Xóa hiệu ứng của hình ảnh
+        gifImg.style.animation = 'none'; // Xóa tất cả các hiệu ứng animation
+        gifImg.style.transform = 'none'; // Đặt lại bất kỳ hiệu ứng transform nào
 
-  function startHeartEffect() {
-      heartInterval = setInterval(createHearts, 300); // Tạo trái tim mỗi 300ms
-  }
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
 
-  function stopHeartEffect() {
-      clearInterval(heartInterval);
-      heartContainer.innerHTML = ''; // Xóa tất cả trái tim
-  }
+        // Ngừng hiệu ứng di chuyển của nút "No"
+        noBtn.removeEventListener("mouseover", moveNoBtn);
+        noBtn.removeEventListener("click", handleNoBtnClick);
 
-  yesBtn.addEventListener("click", () => {
-      stopHeartEffect();
-      document.querySelector(".question").innerHTML = "I love you too!😘";
-      document.querySelector(".question").innerHTML = "Let’s make plans for our future together!😘";
-      document.querySelector(".gif").src = "abc.jpg";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-  });
+        let audio = new Audio('click-sound.mp3');
+        audio.play();
+    });
 
-  noBtn.addEventListener("mouseover", moveNoBtn);
-  noBtn.addEventListener("click", moveNoBtn);
+    noBtn.addEventListener("mouseover", moveNoBtn);
+    noBtn.addEventListener("click", handleNoBtnClick);
 
-  function moveNoBtn() {
-      const groupRect = noBtn.parentElement.getBoundingClientRect();
-      const noBtnRect = noBtn.getBoundingClientRect();
-      const maxX = groupRect.width - noBtnRect.width;
-      const maxY = groupRect.height - noBtnRect.height;
+    function moveNoBtn() {
+        const groupRect = noBtn.parentElement.getBoundingClientRect();
+        const noBtnRect = noBtn.getBoundingClientRect();
+        const maxX = groupRect.width - noBtnRect.width;
+        const maxY = groupRect.height - noBtnRect.height;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
 
-      noBtn.style.position = 'absolute';
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
-  }
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    }
 
-  startHeartEffect(); // Bắt đầu hiệu ứng trái tim ngay khi trang web được mở
+    function handleNoBtnClick() {
+        let audio = new Audio('click-sound.mp3');
+        audio.play();
+        moveNoBtn();
+    }
 });
