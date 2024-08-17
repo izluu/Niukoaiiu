@@ -1,9 +1,11 @@
+/* Reset mặc định cho tất cả các phần tử */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Cấu hình cho body */
 body {
     display: flex;
     justify-content: center;
@@ -11,8 +13,13 @@ body {
     min-height: 100vh;
     background: #add8e6;
     padding: 10px;
+    background-image: url('background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
 }
 
+/* Cấu hình cho wrapper */
 .wrapper {
     text-align: center;
     max-width: 500px;
@@ -25,33 +32,56 @@ body {
     padding: 20px;
 }
 
+/* Cấu hình cho tiêu đề */
 h2 {
     font-size: 2.5em;
     color: #e94d58;
     margin: 15px 0;
+    font-weight: bold; /* Tạo sự nổi bật hơn cho văn bản */
+    animation: blink 1.5s infinite; /* Hiệu ứng nhấp nháy liên tục */
 }
 
+/* Hiệu ứng nhấp nháy */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+/* Cấu hình cho hình ảnh GIF */
 .gif {
     display: block;
     margin: 20px auto;
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+    animation: float 3s ease-in-out infinite;
 }
 
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Cấu hình cho nhóm nút */
 .btn-group {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    gap: 30px; /* Khoảng cách giữa các nút */
+    gap: 30px;
     position: relative;
     width: 100%;
     height: 50px;
 }
 
+/* Cấu hình cho nút */
 button {
-    width: 80px; /* Đặt chiều rộng cụ thể cho nút */
+    width: 80px;
     height: 40px;
     color: white;
     font-size: 1em;
@@ -61,20 +91,26 @@ button {
     box-shadow: 0 2px 4px gray;
     border: 2px solid #e94d58;
     position: relative;
+    transition: box-shadow 0.3s ease;
 }
 
+button:hover {
+    box-shadow: 0 0 15px #e94d58;
+}
+
+/* Cấu hình cho nút "Yes" */
 .yes-btn {
     background: #e94d58;
 }
 
+/* Cấu hình cho nút "No" */
 .no-btn {
     background: white;
     color: #e94d58;
-    /* Remove position: relative; */
     transition: left 0.3s ease, top 0.3s ease;
-    /* Adjust left and top properties as needed */
 }
 
+/* Cấu hình cho container của hình ảnh */
 .helicopter-container {
     position: relative;
     display: inline-block;
